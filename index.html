@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ChatJS</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+<h1 class="title">Comp 429: Real-Time Chat App</h1>
+<div id="history"></div>
+<form id="chat">
+    <input type="text" id="msg_text" name="msg_text" />
+    <input type="submit" value="Send!" />
+</form>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/chat.js"></script>
+<script type="text/javascript">
+    window.setInterval(function() {
+        var elem = document.getElementById('history');
+        elem.scrollTop = elem.scrollHeight;
+    }, 500);
+
+    var socket = io.connect();
+    // var socket = io.connect({transports: ['websocket']});
+    $("form#chat").submit(function(e) {
+        e.preventDefault();
+        socket.emit("send message", $(this).find("#msg_text").val(), function() {
+            $("form#chat #msg_text").val("");
+        });
+    });
+
+    socket.on("update messages", function(msg){
+        var final_message = $("<p />").text(msg);
+        $("#history").append(final_message);
+    });
+
+    socket.on("test message", function(data) {
+        // this Works
+        console.log(data);
+        var final_message = $("<p />").text(data);
+        $("#history").append(final_message);
+    });
+
+    socket.on("connection success", function(msg) {
+        var confirm_message = $("<p />").text(msg);
+        $("#history").append(confirm_message);
+    });
+
+    socket.on("disconnect", function(data) {
+        // this Works
+        console.log(data);
+        var disconnection = $("<p />").text(data);
+        $("#history").append(disconnection);
+    });
+</script>
+</body>
+
+</html>

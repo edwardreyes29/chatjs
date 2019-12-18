@@ -1,0 +1,43 @@
+html, body, input {
+    font-family: Avenir-BlackOblique, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #302F31;
+    padding: 10px;
+}
+
+form {
+    margin: 15px 0;
+}
+
+form input[type='text'] {
+    border: 2px solid #7bc1ad;
+    border-radius: 5px;
+    padding: 5px;
+    width: 75%;
+}
+
+form input[type='submit'] {
+    background: #7bc1ad;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 7px 5px;
+    width: 19%;
+}
+
+#history {
+    background: #FFF;
+    border: 2px solid #7bc1ad;
+    height: 550px;
+    overflow-y:scroll;
+}
+.title{
+    text-align: center;
+    color: #7bc1ad;
+}
