@@ -29,6 +29,6 @@
     "inquirer": "^6.2.2",
     "network": "^0.4.1",
     "opn": "^5.5.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.5.0"
   }
 }
